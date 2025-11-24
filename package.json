@@ -2,7 +2,7 @@
   "name": "directus-extension-environment-lock",
   "description": "A bundle extension that locks schema changes in a specific environment in Directus",
   "icon": "extension",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "Sofia Ringström",
   "license": "GPL-3.0",
   "keywords": [
