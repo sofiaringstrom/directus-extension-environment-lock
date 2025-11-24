@@ -25,12 +25,67 @@ npm install directus-extension-environment-lock
 
 ### Environment Variables
 
-| Variable                       | Description                                                                                                   | Default Value                               | Example                                                                       |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------------- |
-| DIRECTUS_ENV_LOCKED            | A comma-separated list of environments that are locked.                                                       | null                                        | `"development,staging"`                                                       |
-| DIRECTUS_ENV_WHITELISTED_ROLES | A comma-separated list of role UUIDS that are allowed to make schema changes and bypass the environment lock. | null                                        | `"123e4567-e89b-12d3-a456-426614174000,123e4567-e89b-12d3-a456-426614174001"` |
-| DIRECTUS_ENV_INCLUDE_FILTERS   | A comma-separated list of filters that are included in the environment lock. Will merge with the defaults.    | [See available filters](#available-filters) | `"fields.create,fields.update,fields.delete"`                                 |
-| DIRECTUS_ENV_EXCLUDE_FILTERS   | A comma-separated list of filters that are excluded from the environment lock.                                | null                                        | `"fields.create,fields.update,fields.delete"`                                 |
+| Variable                       | Description                                                                                                   | 
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------- | 
+| DIRECTUS_ENV_LOCKED            | A comma-separated list of environments that are locked.                                                       |
+| DIRECTUS_ENV_WHITELISTED_ROLES | A comma-separated list of role UUIDS that are allowed to make schema changes and bypass the environment lock. | 
+| DIRECTUS_ENV_INCLUDE_FILTERS   | A comma-separated list of filters that are included in the environment lock. Will merge with the defaults.    |
+| DIRECTUS_ENV_EXCLUDE_FILTERS   | A comma-separated list of filters that are excluded from the environment lock.                                |
+
+<br />
+
+`DIRECTUS_ENV_LOCKED`
+
+A comma-separated list of environments that are locked.
+
+**Default:** `null`
+
+**Example:**
+```bash
+DIRECTUS_ENV_LOCKED="development,staging"
+```
+
+<br />
+
+`DIRECTUS_ENV_WHITELISTED_ROLES`
+
+A comma-separated list of role UUIDS that are allowed to make schema changes and bypass the environment lock.
+
+**Default:** `null`
+
+**Example:**
+
+```bash
+DIRECTUS_ENV_WHITELISTED_ROLES="123e4567-e89b-12d3-a456-426614174000,123e4567-e89b-12d3-a456-426614174001"
+```
+
+<br />
+
+`DIRECTUS_ENV_INCLUDE_FILTERS`
+
+A comma-separated list of filters that are included in the environment lock. Will merge with the defaults.
+
+**Default:** [See available filters](#available-filters)
+
+**Example:**
+
+```bash
+DIRECTUS_ENV_INCLUDE_FILTERS="fields.create,fields.update,fields.delete"
+```
+
+<br />
+
+`DIRECTUS_ENV_EXCLUDE_FILTERS`
+
+A comma-separated list of filters that are excluded from the environment lock.
+
+**Default:** null
+
+**Example:**
+
+```bash
+DIRECTUS_ENV_EXCLUDE_FILTERS="fields.create,fields.update,fields.delete"
+```
 
 #### Available filters
 
