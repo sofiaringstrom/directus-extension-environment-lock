@@ -27,14 +27,14 @@ npm install directus-extension-environment-lock
 
 | Variable                       | Description                                                                                                   | 
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------- | 
-| DIRECTUS_ENV_LOCKED            | A comma-separated list of environments that are locked.                                                       |
+| [DIRECTUS_ENV_LOCKED](#directus_env_locked)            | A comma-separated list of environments that are locked.                                                       |
 | DIRECTUS_ENV_WHITELISTED_ROLES | A comma-separated list of role UUIDS that are allowed to make schema changes and bypass the environment lock. | 
 | DIRECTUS_ENV_INCLUDE_FILTERS   | A comma-separated list of filters that are included in the environment lock. Will merge with the defaults.    |
 | DIRECTUS_ENV_EXCLUDE_FILTERS   | A comma-separated list of filters that are excluded from the environment lock.                                |
 
 <br />
 
-`DIRECTUS_ENV_LOCKED`
+#### `DIRECTUS_ENV_LOCKED`
 
 A comma-separated list of environments that are locked.
 
@@ -47,7 +47,7 @@ DIRECTUS_ENV_LOCKED="development,staging"
 
 <br />
 
-`DIRECTUS_ENV_WHITELISTED_ROLES`
+#### `DIRECTUS_ENV_WHITELISTED_ROLES`
 
 A comma-separated list of role UUIDS that are allowed to make schema changes and bypass the environment lock.
 
@@ -61,7 +61,7 @@ DIRECTUS_ENV_WHITELISTED_ROLES="123e4567-e89b-12d3-a456-426614174000,123e4567-e8
 
 <br />
 
-`DIRECTUS_ENV_INCLUDE_FILTERS`
+#### `DIRECTUS_ENV_INCLUDE_FILTERS`
 
 A comma-separated list of filters that are included in the environment lock. Will merge with the defaults.
 
@@ -75,7 +75,7 @@ DIRECTUS_ENV_INCLUDE_FILTERS="fields.create,fields.update,fields.delete"
 
 <br />
 
-`DIRECTUS_ENV_EXCLUDE_FILTERS`
+#### `DIRECTUS_ENV_EXCLUDE_FILTERS`
 
 A comma-separated list of filters that are excluded from the environment lock.
 
@@ -87,7 +87,9 @@ A comma-separated list of filters that are excluded from the environment lock.
 DIRECTUS_ENV_EXCLUDE_FILTERS="fields.create,fields.update,fields.delete"
 ```
 
-#### Available filters
+---
+
+### Available filters
 
 The following filters are active by default. You can exclude specific filters from the environment lock by setting the `DIRECTUS_ENV_EXCLUDE_FILTERS` environment variable, or include others by setting the `DIRECTUS_ENV_INCLUDE_FILTERS` environment variable.
 
@@ -111,6 +113,8 @@ The following filters are active by default. You can exclude specific filters fr
 | policies.update    | Updates to any policies     |
 | policies.delete    | Deletion of any policies    |
 
+---
+
 ### Panel
 
 The extension includes a panel that displays the status of the environment lock.
@@ -121,9 +125,13 @@ The extension includes a panel that displays the status of the environment lock.
 
 <img src="https://raw.githubusercontent.com/sofiaringstrom/directus-extension-environment-lock/refs/heads/main/docs/inactive.png" width="400" height="auto">
 
+---
+
 ### Hooks
 
 The extension includes hooks that are used to lock schema changes in a specific environment.
+
+---
 
 ## Development
 
