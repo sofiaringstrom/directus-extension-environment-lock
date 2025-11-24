@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/sofiaringstrom/directus-extension-environment-lock/refs/heads/main/docs/locked_staging.png" width="400" height="auto">
 
-# directus-extension-environment-lock
+# directus-extension-environment-lock ![NPM Version](https://img.shields.io/npm/v/directus-extension-environment-lock)
 
 This bundle extension adds the ability to lock schema changes in a specific environment, and includes a panel that displays the status of the environment lock.
 
