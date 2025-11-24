@@ -1,0 +1,57 @@
+{
+  "name": "directus-extension-environment-lock",
+  "description": "A bundle extension that locks schema changes in a specific environment in Directus",
+  "icon": "extension",
+  "version": "1.0.0",
+  "author": "Sofia Ringström",
+  "license": "GPL-3.0",
+  "keywords": [
+    "directus",
+    "directus-extension",
+    "directus-extension-bundle"
+  ],
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "directus:extension": {
+    "type": "bundle",
+    "path": {
+      "app": "dist/app.js",
+      "api": "dist/api.js"
+    },
+    "entries": [
+      {
+        "type": "hook",
+        "name": "environment-lock-hooks",
+        "source": "src/environment-lock-hooks/index.ts"
+      },
+      {
+        "type": "panel",
+        "name": "environment-lock-panel",
+        "source": "src/environment-lock-panel/index.ts"
+      },
+      {
+        "type": "endpoint",
+        "name": "environment-lock-endpoint",
+        "source": "src/environment-lock-endpoint/index.ts"
+      }
+    ],
+    "host": "^11.13.0"
+  },
+  "scripts": {
+    "build": "directus-extension build",
+    "dev": "directus-extension build -w --no-minify",
+    "link": "directus-extension link",
+    "validate": "directus-extension validate",
+    "add": "directus-extension add"
+  },
+  "devDependencies": {
+    "@directus/errors": "^2.0.5",
+    "@directus/extensions-sdk": "17.0.3",
+    "@directus/types": "^13.4.0",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vue": "^3.5.24"
+  }
+}
