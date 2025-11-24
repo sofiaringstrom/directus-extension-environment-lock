@@ -5,6 +5,11 @@
   "version": "0.0.1",
   "author": "Sofia Ringström",
   "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofiaringstrom/directus-extension-environment-lock.git"
+  },
+  "homepage": "https://github.com/sofiaringstrom/directus-extension-environment-lock",
   "keywords": [
     "directus",
     "directus-extension",
