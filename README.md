@@ -4,6 +4,9 @@
 
 This bundle extension adds the ability to lock schema changes in a specific environment, and includes a panel that displays the status of the environment lock.
 
+> [!CAUTION]
+> This extension is still work in progress, and have **not** been extensively tested. Use with caution!
+
 ## Features
 
 - Lock schema changes in a specific environment
