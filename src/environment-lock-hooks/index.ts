@@ -39,9 +39,44 @@ export default (
   { services, database, getSchema, env, logger }: ApiExtensionContext
 ) => {
   const lockedEnvironments = env.DIRECTUS_ENV_LOCKED || [];
-  const whitelistedRoles = env.DIRECTUS_ENV_LOCK_WHITELISTED_ROLES || [];
+  const whitelistedRoles = env.DIRECTUS_ENV_WHITELISTED_ROLES || [];
+  const whitelistedTokens = env.DIRECTUS_ENV_WHITELISTED_TOKENS || [];
   const excludedFilters = env.DIRECTUS_ENV_EXCLUDE_FILTERS || [];
   const includeFilters = env.DIRECTUS_ENV_INCLUDE_FILTERS || [];
+
+  // Store to track recent valid tokens
+  const recentValidTokens = new Set<string>();
+  let globalCleanupTimeout: NodeJS.Timeout | null = null;
+
+  filter("authenticate", (accountability, { req }) => {
+    const isSchemaOperation =
+      req.url?.includes("/schema/") ||
+      req.url?.includes("/collections") ||
+      req.url?.includes("/fields") ||
+      req.url?.includes("/relations");
+
+    if (isSchemaOperation && req.headers?.authorization) {
+      const token = req.headers?.authorization?.replace("Bearer ", "");
+
+      // check if token is whitelisted
+      if (whitelistedTokens.includes(token)) {
+        // If this token already has a cleanup timeout, clear it
+        if (globalCleanupTimeout) {
+          clearTimeout(globalCleanupTimeout);
+        }
+
+        recentValidTokens.add(token);
+
+        // Clean up after 1 minute
+        globalCleanupTimeout = setTimeout(() => {
+          recentValidTokens.delete(token);
+          globalCleanupTimeout = null;
+        }, 60000);
+      }
+
+      return accountability;
+    }
+  });
 
   const getFilters = (
     includeFiltersStr: string | string[],
@@ -84,14 +119,15 @@ export default (
   const allowSchemaChange = (context: any) => {
     const role = context?.accountability?.role;
 
-    if (!role) {
-      logger.warn(`${LOGGER_PREFIX} No role found in accountability`);
-      return false;
+    if (role && whitelistedRoles.includes(role.id)) {
+      logger.info(`${LOGGER_PREFIX} Whitelisted role - allowing schema change`);
+      return true;
     }
 
-    if (whitelistedRoles.includes(role.id)) {
+    // Check if we recently validated a whitelisted token
+    if (context.accountability === null && recentValidTokens.size > 0) {
       logger.info(
-        `${LOGGER_PREFIX} Whitelisted role "${role}" (${role.id}) - allowing`
+        `${LOGGER_PREFIX} Recent valid token detected - allowing schema change`
       );
       return true;
     }
