@@ -53,7 +53,16 @@ export default (
       req.url?.includes("/schema/") ||
       req.url?.includes("/collections") ||
       req.url?.includes("/fields") ||
-      req.url?.includes("/relations");
+      req.url?.includes("/relations") ||
+      req.url?.includes("/settings") ||
+      req.url?.includes("/roles") ||
+      req.url?.includes("/policies") ||
+      req.url?.includes("/permissions") ||
+      req.url?.includes("/dashboards") ||
+      req.url?.includes("/panels") ||
+      req.url?.includes("/presets") ||
+      req.url?.includes("/flows") ||
+      req.url?.includes("/operations");
 
     if (isSchemaOperation && req.headers?.authorization) {
       const token = req.headers?.authorization?.replace("Bearer ", "");
